@@ -1,11 +1,14 @@
+// Require dependencies
 var OAuth = require('oauth');
 var request = require('request-promise');
-const express = require("express");
-const path = require("path");
-const port = process.env.PORT || 8080;
-const app = express();
+var express = require("express");
+var path = require("path");
+var twitter = require('ntwitter');
 var apiResponse = null;
-var get = "";
+
+// -create the express instance
+var app = express();
+var port = process.env.PORT || 8080;
 
 
 
@@ -18,6 +21,10 @@ const allowCrossDomain = (req, res, next) => {
     res.header("Access-Control-Allow-Headers", "Content-Type");
     next();
 }
+
+// Create a new ntwitter instance
+var twit = new twitter(config.twitter);
+
 /////////////////////////////////////////////
 // APP CONFIGURATION
 /////////////////////////////////////////////
@@ -57,5 +64,14 @@ app.get("/", (req, res) => {
         });
 });
 
-app.listen(port);
+// Let express create the server.
+var server = app.listen(port);
 console.log("Server started");
+
+// Initialize socket.io
+var io = require('socket.io').listen(server);
+
+// Set a stream listener for tweets matching tracking keywords
+/*twit.stream('statuses/filter',{ track: 'scotch_io, #scotchio'}, function(stream){
+    streamHandler(stream,io);
+});*/
