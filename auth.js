@@ -5,6 +5,7 @@ var express = require("express");
 var path = require("path");
 var twitter = require('ntwitter');
 var apiResponse = null;
+var config = require('./config');
 
 // -create the express instance
 var app = express();
@@ -31,8 +32,8 @@ var twit = new twitter(config.twitter);
 app.use(allowCrossDomain);
 
 var OAuth2 = OAuth.OAuth2;
-var twitterConsumerKey = 'GiePaJCNVnKM4g69p6CdUnBZR';
-var twitterConsumerSecret = 'XYHoTEJUOUW53gE7a35s0VBul0YyFOMF284p7VHrA1W1DbUO51';
+var twitterConsumerKey = '6aSm4WOlxNn8uzKUsMavv8d1A';
+var twitterConsumerSecret = '7i4Gg8Ib3nXQ4o4PpkVv3zL7GH6ueUmo3XtTpcxLGcufVUan6u';
 var oauth2 = new OAuth2(
     twitterConsumerKey,
     twitterConsumerSecret,
@@ -72,6 +73,23 @@ console.log("Server started");
 var io = require('socket.io').listen(server);
 
 // Set a stream listener for tweets matching tracking keywords
-/*twit.stream('statuses/filter',{ track: 'scotch_io, #scotchio'}, function(stream){
-    streamHandler(stream,io);
-});*/
+twit.stream('statuses/filter',{ track: '#TheBachelor'}, function(stream){
+    //streamHandler(stream,io);
+    stream.on('data', function(data) {
+        console.log(data);
+        // Construct a new tweet object
+        var tweet = {
+            twid: data['id'],
+            active: false,
+            author: data['user']['name'],
+            avatar: data['user']['profile_image_url'],
+            body: data['text'],
+            date: data['created_at'],
+            screenname: data['user']['screen_name']
+        };
+
+        // If everything is cool, socket.io emits the tweet.
+        io.emit('tweet', tweet);
+
+    });
+});
