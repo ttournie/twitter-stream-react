@@ -36,8 +36,8 @@ var twit = new twitter(config.twitter);
 /////////////////////////////////////////////
 app.use(allowCrossDomain);
 
+// Send the tweets to the client.
 app.get("/", (req, res) => {
-    console.log(Tweet);
     Tweet.getTweets(0,0, function(tweets, pages) {
         res.send(tweets);
     });

@@ -11,8 +11,6 @@ var schema = new mongoose.Schema({
     , screenname : String
 });
 
-//var Tweet = mongoose.model('Tweet', schema);
-
 // Create a static getTweets method to return tweet data from the db
 schema.statics.getTweets = function(page, skip, callback) {
 

@@ -29,7 +29,7 @@ class Twitter extends React.Component {
 
     render() {
         const { tweets, fetched}=this.props.tweets;
-        console.log(this.state);
+        console.log(this.props.tweets);
         return (
             <div>
                 <h2>Twitter Feed</h2>
@@ -41,7 +41,7 @@ class Twitter extends React.Component {
                 <div className="tweets">
                     {fetched ?
                         tweets.map(function(tweet, i){
-                            return <p key={i}> {tweet.text} </p>
+                            return <p key={i}> {tweet.body} </p>
                         })
                         :
                         <p>Loading tweets</p>
