@@ -5,6 +5,18 @@ import io from 'socket.io-client'
 var socket = io.connect('http://localhost:8080');
 
 class Twitter extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            tweets: [],
+            count: 0,
+            page: 0,
+            paging: false,
+            skip: 0,
+            done: false
+        };
+    }
+
     componentWillMount() {
         this.props.dispatch(getTweets());
         socket.on('tweet', function(tweet){
@@ -12,8 +24,8 @@ class Twitter extends React.Component {
                 text: tweet.body
             });
         }.bind(this));
-
     }
+
 
     render() {
         const { tweets, fetched}=this.props.tweets;
