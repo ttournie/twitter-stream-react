@@ -17,11 +17,11 @@ export default function tweets(state = {
         var updated = action.payload;
         var oldTweets = state.tweets;
         oldTweets.unshift(updated)
-        console.log('UPDATED' + updated);
-        console.log('OLD' + oldTweets);
+        // Add length limitation;
+        var updatedTweets = oldTweets.slice(0, 10);
         return {
             ...state,
-            tweets: oldTweets,
+            tweets: updatedTweets,
             fetched: true
         }
     }
