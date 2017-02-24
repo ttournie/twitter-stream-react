@@ -28,9 +28,6 @@ class Twitter extends React.Component {
                                 body={tweet.body}
                             />
 
-
-
-                            //return <p key={i}> {tweet.body} </p>
                         })
                         :
                         <p>Loading tweets</p>
