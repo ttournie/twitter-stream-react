@@ -51,6 +51,6 @@ console.log("Server started");
 var io = require('socket.io').listen(server);
 
 // Set a stream listener for tweets matching tracking keywords
-twit.stream('statuses/filter',{ track: '#TheBachelor'}, function(stream){
+twit.stream('statuses/filter',{ track: '#HTGAWM'}, function(stream){
     streamHandler(stream,io);
 });

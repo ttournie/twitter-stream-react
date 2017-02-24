@@ -13,5 +13,17 @@ export default function tweets(state = {
             fetched: true
         }
     }
+    if (action.type === "TWEETS_UPDATE") {
+        var updated = action.payload;
+        var oldTweets = state.tweets;
+        oldTweets.unshift(updated)
+        console.log('UPDATED' + updated);
+        console.log('OLD' + oldTweets);
+        return {
+            ...state,
+            tweets: oldTweets,
+            fetched: true
+        }
+    }
     return state;
 }
