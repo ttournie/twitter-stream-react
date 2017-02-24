@@ -8,15 +8,12 @@ export default class Tweet extends React.Component {
     render() {
         const { screenname, author, body} = this.props;
         return (
-            <div>
                 <div className="tweet">
-                    <cite>
+                    <h2 className="title">
                         <a href={"http://www.twitter.com/" + screenname}>{author}</a>
-                        <span className="screen-name">@{screenname}</span>
-                    </cite>
+                    </h2>
                     <span className="content">{body}</span>
                 </div>
-            </div>
         )
     }
 }

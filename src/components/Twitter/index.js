@@ -11,14 +11,14 @@ class Twitter extends React.Component {
     render() {
         const { tweets, fetched} = this.props.tweets;
         return (
-            <div>
+            <div className="main">
                 <h2>Twitter Feed</h2>
                 {this.state ?
                     this.state.text :
                     ''
                 }
 
-                <div className="tweets">
+                <section className="tweets">
                     {fetched ?
                         tweets.map(function(tweet, i){
                             return <Tweet
@@ -32,7 +32,7 @@ class Twitter extends React.Component {
                         :
                         <p>Loading tweets</p>
                     }
-                </div>
+                </section>
             </div>
         )
     }

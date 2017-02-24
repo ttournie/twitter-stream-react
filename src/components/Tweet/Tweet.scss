@@ -1,0 +1,43 @@
+.tweets {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tweet{
+  padding: 45px 45px 30px;
+  width: 20%;
+  position: relative;
+  color: inherit;
+  background: #fff;
+  min-height: 300px;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  &:before {
+    position: absolute;
+    content: '';
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    left: 5px;
+    border: 1px solid rgba(74, 74, 74, 0.075);
+    transition: opacity 0.3s;
+  }
+}
+h2.title {
+  a{
+    font-size: 1em;
+    font-family: "Playfair Display", serif;
+    text-align: center;
+    color: #7b7b7b;
+    text-decoration: none;
+  }
+}
+
+html,
+body,
+.App {
+  height: 100vh;
+}
