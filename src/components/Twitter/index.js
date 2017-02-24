@@ -5,13 +5,9 @@ import Tweet from "../Tweet";
 
 
 class Twitter extends React.Component {
-
-    componentWillMount() {
-        //this.props.dispatch(getTweets(""));
-    }
-
     SearchKeywords() {
-        this.props.dispatch(getTweets(""));
+        var tags = document.getElementById('search').value
+        this.props.dispatch(getTweets(tags));
     }
 
 
@@ -21,16 +17,12 @@ class Twitter extends React.Component {
             <div className="main">
 
                 <div className="search">
-                    <label for="search">Search</label>
-                    <input type="text" id="search"/>
+                    <label htmlFor="search">Search</label>
+                    <input type="text" id="search" name="search"/>
                     <input type="button" id="submit" value="Search" onClick={this.SearchKeywords.bind(this)}/>
                 </div>
 
                 <h2>Twitter Feed</h2>
-                {this.state ?
-                    this.state.text :
-                    ''
-                }
 
                 <section className="tweets">
                     {fetched ?
@@ -45,7 +37,7 @@ class Twitter extends React.Component {
 
                         })
                         :
-                        <p>Loading tweets</p>
+                        <p>Waiting for input</p>
                     }
                 </section>
             </div>

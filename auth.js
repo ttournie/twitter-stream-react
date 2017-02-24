@@ -34,14 +34,8 @@ var twit = new twitter(config.twitter);
 /////////////////////////////////////////////
 // APP CONFIGURATION
 /////////////////////////////////////////////
-app.use(allowCrossDomain);
+//app.use(allowCrossDomain);
 
-// Send the tweets to the client.
-app.get("/", (req, res) => {
-    Tweet.getTweets(0,0, function(tweets, pages) {
-        res.send(tweets);
-    });
-});
 
 // Let express create the server.
 var server = app.listen(port);
@@ -50,7 +44,16 @@ console.log("Server started");
 // Initialize socket.io
 var io = require('socket.io').listen(server);
 
-// Set a stream listener for tweets matching tracking keywords
-twit.stream('statuses/filter',{ track: '#HTGAWM'}, function(stream){
-    streamHandler(stream,io);
+
+// Send the tweets to the client.
+app.get("/", (req, res) => {
+    var tags = req.param("tags")
+    if (tags != "") {
+        //#HTGAWM
+        console.log(tags);
+        // Set a stream listener for tweets matching tracking keywords
+        twit.stream('statuses/filter',{ track: tags}, function(stream){
+            streamHandler(stream,io);
+        });
+    }
 });
