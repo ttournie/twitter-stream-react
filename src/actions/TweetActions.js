@@ -3,7 +3,7 @@ import io from 'socket.io-client'
 var socket = io.connect('http://localhost:8080');
 
 // Get all the channels with the current program.
-export function getTweets() {
+export function getTweets(tags) {
     return function(dispatch) {
         axios.get("http://localhost:8080/")
             .then((response) => {

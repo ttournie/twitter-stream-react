@@ -3,15 +3,29 @@ import { connect } from "react-redux";
 import { getTweets } from "../../actions/TweetActions";
 import Tweet from "../Tweet";
 
+
 class Twitter extends React.Component {
+
     componentWillMount() {
-        this.props.dispatch(getTweets());
+        //this.props.dispatch(getTweets(""));
     }
+
+    SearchKeywords() {
+        this.props.dispatch(getTweets(""));
+    }
+
 
     render() {
         const { tweets, fetched} = this.props.tweets;
         return (
             <div className="main">
+
+                <div className="search">
+                    <label for="search">Search</label>
+                    <input type="text" id="search"/>
+                    <input type="button" id="submit" value="Search" onClick={this.SearchKeywords.bind(this)}/>
+                </div>
+
                 <h2>Twitter Feed</h2>
                 {this.state ?
                     this.state.text :
