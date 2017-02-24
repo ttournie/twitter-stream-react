@@ -26,6 +26,7 @@ class Twitter extends React.Component {
                                 screenname={tweet.screenname}
                                 author={tweet.author}
                                 body={tweet.body}
+                                avatar={tweet.avatar}
                             />
 
                         })

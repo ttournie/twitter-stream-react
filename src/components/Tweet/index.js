@@ -6,9 +6,10 @@ export default class Tweet extends React.Component {
     }
 
     render() {
-        const { screenname, author, body} = this.props;
+        const { screenname, author, body, avatar} = this.props;
         return (
                 <div className="tweet">
+                    <img className="avatar" src={avatar}></img>
                     <h2 className="title">
                         <a href={"http://www.twitter.com/" + screenname}>{author}</a>
                     </h2>

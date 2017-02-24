@@ -1,7 +1,4 @@
-.tweets {
-  display: flex;
-  flex-wrap: wrap;
-}
+
 
 .tweet{
   padding: 45px 45px 30px;
@@ -36,8 +33,9 @@ h2.title {
   }
 }
 
-html,
-body,
-.App {
-  height: 100vh;
+.avatar {
+  margin: 0 auto;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
 }
