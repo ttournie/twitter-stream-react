@@ -15,7 +15,7 @@ This project use :
 - You also need to have mongodb running
 - Finally you need to add a .config file in the root looking like this :
 
-`
+```
 module.exports = {
     twitter: {
         consumer_key: '6aSm4WOlxNn8uzKUsMavv8d1A',
@@ -24,4 +24,4 @@ module.exports = {
         access_token_secret: 'iJctekkzif70aXcyhEXyeyPyYE9HZdglMcgsKbkAWZJ4j'
     }
 }
-`
+```
