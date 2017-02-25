@@ -15,7 +15,6 @@ class Twitter extends React.Component {
         this.props.dispatch(getTweets(tags));
     }
 
-
     render() {
         const { tweets, fetched} = this.props.tweets;
         return (

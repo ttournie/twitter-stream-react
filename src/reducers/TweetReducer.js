@@ -16,6 +16,7 @@ export default function tweets(state = {
             fetched: true
         }
     }
+    // Clean the old tweets.
     if (action.type === "NEW_SEARCH") {
         return {
             ...state,

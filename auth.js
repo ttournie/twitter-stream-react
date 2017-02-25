@@ -41,29 +41,22 @@ console.log("Server started");
 
 // Initialize socket.io
 var io = require('socket.io').listen(server);
+// Variable to store the stream.
 var currentStream;
 
 // Send the tweets to the client.
 app.get("/", (req, res) => {
     var tags = req.param("tags")
     if (tags != "") {
-
+        // Destroy the stream before opening a new one.
         if (typeof currentStream !== 'undefined') {
             currentStream.destroy();
-            //currentStream = 'undefined';
-            /*twit.stream('statuses/filter',{ track: tags}, function(stream){
-                streamHandler(stream,io);
-                currentStream = stream;
-            });*/
         }
-            // else {
-            //#HTGAWM
-            console.log('START');
-            // Set a stream listener for tweets matching tracking keywords
-             twit.stream('statuses/filter',{ track: tags}, function(stream){
-                streamHandler(stream,io);
-                 currentStream = stream;
-            });
-     //   }
+
+        // Set a stream listener for tweets.
+        twit.stream('statuses/filter',{ track: tags}, function(stream){
+            streamHandler(stream,io);
+            currentStream = stream;
+        });
     }
 });
