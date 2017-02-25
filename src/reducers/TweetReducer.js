@@ -16,5 +16,11 @@ export default function tweets(state = {
             fetched: true
         }
     }
+    if (action.type === "NEW_SEARCH") {
+        return {
+            ...state,
+            tweets: [],
+        }
+    }
     return state;
 }

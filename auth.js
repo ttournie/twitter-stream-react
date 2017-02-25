@@ -1,10 +1,8 @@
 // Require dependencies
-var OAuth = require('oauth');
 var request = require('request-promise');
 var express = require("express");
 var path = require("path");
 var twitter = require('ntwitter');
-var apiResponse = null;
 var streamHandler = require('./src/utils/streamHandler');
 var config = require('./config');
 var mongoose = require('mongoose');
@@ -52,11 +50,13 @@ app.get("/", (req, res) => {
 
         if (typeof currentStream !== 'undefined') {
             currentStream.destroy();
-            twit.stream('statuses/filter',{ track: tags}, function(stream){
+            //currentStream = 'undefined';
+            /*twit.stream('statuses/filter',{ track: tags}, function(stream){
                 streamHandler(stream,io);
                 currentStream = stream;
-            });
-        } else {
+            });*/
+        }
+            // else {
             //#HTGAWM
             console.log('START');
             // Set a stream listener for tweets matching tracking keywords
@@ -64,6 +64,6 @@ app.get("/", (req, res) => {
                 streamHandler(stream,io);
                  currentStream = stream;
             });
-        }
+     //   }
     }
 });

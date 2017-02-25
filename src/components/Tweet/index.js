@@ -1,10 +1,6 @@
 import React from 'react';
 
 export default class Tweet extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const { screenname, author, body, avatar} = this.props;
         return (

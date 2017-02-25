@@ -33,7 +33,6 @@ module.exports = function(stream, io){
     stream.on('destroy', function (response) {
         Tweet.remove({ });
         stream.active = false;
-        console.log(stream);
         console.log('Stream destroyed');
     });
 

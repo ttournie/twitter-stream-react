@@ -11,6 +11,7 @@ export function getTweets(tags) {
                     tags: tags,
                 }
             })
+        dispatch({type: "NEW_SEARCH", payload: ''})
     }
 }
 
@@ -19,6 +20,6 @@ export function initListen() {
         // Begin the socket listening Add new Tweet to the component.
         socket.on('tweet', function(tweet){
             dispatch({type: "TWEETS_UPDATE", payload: tweet})
-        }.bind(this));
+        });
     }
 }
