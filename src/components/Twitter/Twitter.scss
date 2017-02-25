@@ -2,3 +2,18 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.search {
+  margin-top: 20px;
+  label {
+    margin-right: 10px;
+  }
+  .searchText {
+    margin-right: 10px;
+  }
+}
+
+.emptyTweet {
+  margin: 0 auto;
+  text-align: center;
+}

@@ -18,7 +18,7 @@ module.exports = function(stream, io){
 
         // Create a new model instance with our object
         var tweetEntry = new Tweet(tweet);
-        console.log(tweet);
+        //console.log(tweet);
 
         // Save 'er to the database
         tweetEntry.save(function(err) {
@@ -28,6 +28,13 @@ module.exports = function(stream, io){
             }
         });
 
+    });
+
+    stream.on('destroy', function (response) {
+        Tweet.remove({ });
+        stream.active = false;
+        console.log(stream);
+        console.log('Stream destroyed');
     });
 
 };

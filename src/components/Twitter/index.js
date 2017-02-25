@@ -1,10 +1,15 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { getTweets } from "../../actions/TweetActions";
+import { initListen } from "../../actions/TweetActions";
 import Tweet from "../Tweet";
 
 
 class Twitter extends React.Component {
+    componentWillMount() {
+        this.props.dispatch(initListen());
+    }
+
     SearchKeywords() {
         var tags = document.getElementById('search').value
         this.props.dispatch(getTweets(tags));
@@ -18,8 +23,8 @@ class Twitter extends React.Component {
 
                 <div className="search">
                     <label htmlFor="search">Search</label>
-                    <input type="text" id="search" name="search"/>
-                    <input type="button" id="submit" value="Search" onClick={this.SearchKeywords.bind(this)}/>
+                    <input className="searchText" type="text" id="search" name="search"/>
+                    <input className="searchButton" type="button" id="submit" value="Search" onClick={this.SearchKeywords.bind(this)}/>
                 </div>
 
                 <h2>Twitter Feed</h2>
@@ -37,7 +42,7 @@ class Twitter extends React.Component {
 
                         })
                         :
-                        <p>Waiting for input</p>
+                        <div className="emptyTweet"><p>Waiting for input</p></div>
                     }
                 </section>
             </div>

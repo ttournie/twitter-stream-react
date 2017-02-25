@@ -34,7 +34,7 @@ var twit = new twitter(config.twitter);
 /////////////////////////////////////////////
 // APP CONFIGURATION
 /////////////////////////////////////////////
-//app.use(allowCrossDomain);
+app.use(allowCrossDomain);
 
 
 // Let express create the server.
@@ -43,17 +43,35 @@ console.log("Server started");
 
 // Initialize socket.io
 var io = require('socket.io').listen(server);
-
+var currentStream;
 
 // Send the tweets to the client.
 app.get("/", (req, res) => {
     var tags = req.param("tags")
     if (tags != "") {
-        //#HTGAWM
-        console.log(tags);
-        // Set a stream listener for tweets matching tracking keywords
-        twit.stream('statuses/filter',{ track: tags}, function(stream){
-            streamHandler(stream,io);
-        });
+
+        if (typeof currentStream !== 'undefined') {
+            console.log('STOPPPPPPPP');
+            console.log(currentStream);
+            currentStream.destroy();
+            twit.stream('statuses/filter',{ track: tags}, function(stream){
+                streamHandler(stream,io);
+                currentStream = stream;
+            });
+            /*setTimeout(
+                twit.stream('statuses/filter',{ track: tags}, function(stream){
+                streamHandler(stream,io);
+                currentStream = stream;
+            }), 10000);*/
+
+        } else {
+            //#HTGAWM
+            console.log('START');
+            // Set a stream listener for tweets matching tracking keywords
+             twit.stream('statuses/filter',{ track: tags}, function(stream){
+                streamHandler(stream,io);
+                 currentStream = stream;
+            });
+        }
     }
 });

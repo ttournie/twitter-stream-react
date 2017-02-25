@@ -3,16 +3,7 @@ export default function tweets(state = {
     tweets: [],
     fetched: false
 }, action) {
-    //////////////////////////////////////////
-    // INITIAL FETCH OF DATA
-    //////////////////////////////////////////
-    if (action.type === "TWEETS_FETCHED") {
-        return {
-            ...state,
-            tweets: action.payload,
-            fetched: true
-        }
-    }
+    // Update the tweet list.
     if (action.type === "TWEETS_UPDATE") {
         var updated = action.payload;
         var oldTweets = state.tweets;
