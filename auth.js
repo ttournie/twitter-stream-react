@@ -51,19 +51,11 @@ app.get("/", (req, res) => {
     if (tags != "") {
 
         if (typeof currentStream !== 'undefined') {
-            console.log('STOPPPPPPPP');
-            console.log(currentStream);
             currentStream.destroy();
             twit.stream('statuses/filter',{ track: tags}, function(stream){
                 streamHandler(stream,io);
                 currentStream = stream;
             });
-            /*setTimeout(
-                twit.stream('statuses/filter',{ track: tags}, function(stream){
-                streamHandler(stream,io);
-                currentStream = stream;
-            }), 10000);*/
-
         } else {
             //#HTGAWM
             console.log('START');
